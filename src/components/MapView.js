@@ -31,24 +31,26 @@ const MapView = () => {
       longitude: infoWindowPosition.lng,
       latitude: infoWindowPosition.lat,
     };
-
-    fetch("https://buhacks-model.vercel.app/simulate", {
+    console.log(payload);
+    fetch("https://oyster-app-yj65f.ondigitalocean.app/simulate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
     })
-      .then((response) => response.json)
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
-        console.log(data);
-        setMlResult(data.result);
+        setMlResult(data.data);
       })
       .finally(() => {
         setLoading(false);
+        setInfoWindowShown(false);
       });
   }, [infoWindowPosition]);
-
+  console.log(mlResult);
   return (
     <div className="flex justify-center items-center mt-4">
       <Map

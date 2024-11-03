@@ -18,6 +18,10 @@ function App() {
   const openDevLogModal = () => setIsDevLogOpen(true);
   const closeDevLogModal = () => setIsDevLogOpen(false);
 
+  const handleReset = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="App">
       <APIProvider
@@ -33,6 +37,15 @@ function App() {
 
         {/* Map View */}
         <MapView />
+
+        <div className="fixed bottom-4 right-4">
+          <button
+            onClick={handleReset}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none"
+          >
+            Reset
+          </button>
+        </div>
       </APIProvider>
     </div>
   );
