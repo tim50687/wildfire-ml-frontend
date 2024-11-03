@@ -1,70 +1,42 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# **Dev Log: Frontend Development for Wildfire Risk Map Project**
 
-## Available Scripts
 
-In the project directory, you can run:
+### **Project Overview**
 
-### `npm start`
+The Wildfire Risk Map is a web application designed to visualize wildfire risk levels using an interactive Google Map. The primary functionality includes allowing users to click on locations on the map, triggering a simulation that overlays a heatmap representing wildfire risk in the selected area.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### **Key Accomplishments**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Google Maps Integration**:
+   - Integrated Google Maps into the React application using `@vis.gl/react-google-maps`.
+   - Configured map settings like default center, zoom level, and map ID.
+   - Added an `APIProvider` component to manage the Google Maps API key and load the map efficiently.
 
-### `npm run build`
+2. **User Interaction**:
+   - Implemented click functionality on the map so users can select a location.
+   - Upon clicking a location, an `InfoWindow` displays with details about the selected coordinates (latitude and longitude).
+   - Added a button within the `InfoWindow` to trigger a machine learning simulation for wildfire risk.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Machine Learning Simulation Trigger**:
+   - Created a `handleButtonClick` function to send the selected coordinates as a payload in a POST request to the backend (`https://buhacks-model.vercel.app/simulate`).
+   - Managed loading states to give users feedback while the simulation is running.
+   - Once the simulation completes, the result is received and displayed as a heatmap overlay on the map.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **Heatmap Overlay**:
+   - Integrated a `HeatMapLayer` component to visualize the machine learning results using the Google Maps Visualization library.
+   - The heatmap is dynamically rendered based on data returned from the backend simulation, which highlights areas likely affected by wildfire.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. **UI and Styling**:
+   - Designed the application layout with Tailwind CSS for responsive and modern styling.
+   - Built a navigation bar with project branding, as well as links to "About This Project" and "Dev Log" pages.
+   - Styled the map with a centered layout, rounded corners, and shadow effects for a polished appearance.
 
-### `npm run eject`
+6. **Environment Variable Setup**:
+   - For security, the Google Maps API key was stored as an environment variable (`REACT_APP_GOOGLE_MAPS_API_KEY`), and local `.env` setup was configured to keep sensitive data secure.
+   - In preparation for deployment on Vercel, set up environment variables on Vercel to avoid exposing the API key in the codebase.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
