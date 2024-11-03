@@ -30,9 +30,11 @@ const MapView = () => {
     const payload = {
       longitude: infoWindowPosition.lng,
       latitude: infoWindowPosition.lat,
+      radius: 1.8,
+      separation: 0.4,
     };
-    console.log(payload);
-    fetch("https://oyster-app-yj65f.ondigitalocean.app/simulate", {
+
+    fetch("https://lionfish-app-vh2pz.ondigitalocean.app/simulate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,6 +45,7 @@ const MapView = () => {
         return response.json();
       })
       .then((data) => {
+        console.log(data.data);
         setMlResult(data.data);
       })
       .finally(() => {
@@ -50,7 +53,7 @@ const MapView = () => {
         setInfoWindowShown(false);
       });
   }, [infoWindowPosition]);
-  console.log(mlResult);
+
   return (
     <div className="flex justify-center items-center mt-4">
       <Map
@@ -89,7 +92,7 @@ const MapView = () => {
           </InfoWindow>
         )}
         {mlResult && (
-          <HeatMapLayer geojson={mlResult} radius={42} opacity={0.8} />
+          <HeatMapLayer geojson={mlResult} radius={150} opacity={0.5} />
         )}
       </Map>
     </div>

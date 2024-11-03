@@ -22,13 +22,14 @@ const HeatMapLayer = ({ geojson, radius, opacity }) => {
       geojson.map((point) => {
         const lat = point.latitude;
         const lng = point.longitude;
+
         return {
           location: new google.maps.LatLng(lat, lng),
           weight: point.dispersion,
         };
       })
     );
-  });
+  }, [heatmap, geojson]);
 
   useEffect(() => {
     if (!heatmap) return;
